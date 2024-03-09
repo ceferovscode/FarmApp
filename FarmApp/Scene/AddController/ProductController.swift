@@ -17,6 +17,7 @@ class ProductController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllItems()
 
     }
     
@@ -38,6 +39,7 @@ class ProductController: UIViewController {
         
         do {
             try context.save()
+            getAllItems()
         } catch {
             
         }

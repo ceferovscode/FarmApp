@@ -58,14 +58,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" id="xc6-Hj-9qx">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="28.666666030883789"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xc6-Hj-9qx" id="ki9-dn-xCU">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="28.666666030883789"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPq-kV-XS8">
-                                                    <rect key="frame" x="4" y="4" width="385" height="20.666666666666668"/>
+                                                    <rect key="frame" x="4" y="4" width="385" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -210,6 +210,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Save to Product">
                                             <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="16"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveClicked:" destination="3cE-Ha-FNr" eventType="touchUpInside" id="ffV-I6-DMw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>

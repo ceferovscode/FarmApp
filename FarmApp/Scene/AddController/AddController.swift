@@ -41,7 +41,9 @@ class AddController: UIViewController {
         
     }
     
-
+    @IBAction func saveClicked(_ sender: Any) {
+    }
+    
     @IBAction func addClicked(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
 
