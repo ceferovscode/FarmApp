@@ -10,14 +10,45 @@ import CoreData
 
 class AddController: UIViewController {
 
- 
+    @IBOutlet private weak var productText: UITextField!
+    @IBOutlet private weak var descriptionText: UITextField!
     @IBOutlet private weak var addPhoto: UIButton!
     
-    private let imagePicker = UIImagePickerController()
-    private var productImages : UIImage?
+    private let imagePicker     = UIImagePickerController()
+    private var productImages :   UIImage?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     
 
+    func saveItem(productName: String) {
+           let model = MyList(context: self.context)
+           model.productName = productName
+           
+//           do {
+//               try self.context.save()
+//               //self.fetchItems()
+//           } catch {
+//               print(error.localizedDescription)
+//           }
+       }
+    
+    
+//    func saveItem(productName: String) {
+//        let entity = NSEntityDescription.entity(forEntityName: "Mylist", in: context)!
+//        let model = MyList(entity: entity, insertInto: context)
+//        model.productName = productName
+//        
+//        do {
+//            try context.save()
+//            // Perform any additional operations after saving
+//        } catch {
+//            print("Failed to save item:", error)
+//        }
+//    }
+
+    
+    
     
     private func configureImagePicker() {
         addPhoto.layer.cornerRadius         = 64
@@ -42,6 +73,11 @@ class AddController: UIViewController {
     }
     
     @IBAction func saveClicked(_ sender: Any) {
+        self.saveItem(productName: self.productText.text ?? "title")
+        // self.dismiss(animated: true)
+        // self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     @IBAction func addClicked(_ sender: Any) {

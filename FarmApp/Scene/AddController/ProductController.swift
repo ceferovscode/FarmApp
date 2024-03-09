@@ -13,17 +13,23 @@ class ProductController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private var modals = [Mylist]()
+    private var modals = [MyList]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getAllItems()
 
     }
     
     private func  getAllItems() {
         do {
-            modals = try context.fetch(Mylist.fetchRequest())
+            modals = try context.fetch(MyList.fetchRequest())
+//            print(modals.first?.productName ?? "")
             DispatchQueue.main.async {
                 self.productTableView.reloadData()
             }
@@ -33,9 +39,8 @@ class ProductController: UIViewController {
     }
     
     private func  createitem(name: String) {
-        let newItem = Mylist(context: context)
+        let newItem = MyList(context: context)
         newItem.productName = name
-        newItem.date = Date()
         
         do {
             try context.save()
@@ -45,10 +50,8 @@ class ProductController: UIViewController {
         }
     }
     
-    private func  deleteItem(item: Mylist) {
+    private func  deleteItem(item: MyList) {
         context.delete(item)
-        
-        
         do {
             try context.save()
         } catch {
@@ -56,16 +59,7 @@ class ProductController: UIViewController {
         }
     }
     
-    private func  updateItem(item: Mylist, newName: String) {
-        item.productName =  newName
-        
-        do {
-            try context.save()
-        } catch {
-            
-        }
-    }
-    
+  
 
     @IBAction func addClicked(_ sender: Any) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AddController") as! AddController
@@ -86,11 +80,12 @@ extension ProductController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let modals = modals[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as! PhotoCell
-        cell.textLabel?.text = modals.productName
+        cell.configureData(data: modals[indexPath.row])
         return cell
     }
+    
+    
     
     
 }
