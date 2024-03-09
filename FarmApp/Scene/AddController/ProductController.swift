@@ -18,6 +18,7 @@ class ProductController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getAllItems()
 
     }
     
@@ -29,7 +30,6 @@ class ProductController: UIViewController {
     private func  getAllItems() {
         do {
             modals = try context.fetch(MyList.fetchRequest())
-//            print(modals.first?.productName ?? "")
             DispatchQueue.main.async {
                 self.productTableView.reloadData()
             }

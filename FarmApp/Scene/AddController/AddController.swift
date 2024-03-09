@@ -25,27 +25,14 @@ class AddController: UIViewController {
            let model = MyList(context: self.context)
            model.productName = productName
            
-//           do {
-//               try self.context.save()
-//               //self.fetchItems()
-//           } catch {
-//               print(error.localizedDescription)
-//           }
+           do {
+               try self.context.save()
+           } catch {
+               print(error.localizedDescription)
+           }
        }
     
     
-//    func saveItem(productName: String) {
-//        let entity = NSEntityDescription.entity(forEntityName: "Mylist", in: context)!
-//        let model = MyList(entity: entity, insertInto: context)
-//        model.productName = productName
-//        
-//        do {
-//            try context.save()
-//            // Perform any additional operations after saving
-//        } catch {
-//            print("Failed to save item:", error)
-//        }
-//    }
 
     
     
