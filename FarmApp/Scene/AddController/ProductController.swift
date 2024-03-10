@@ -8,23 +8,40 @@
 import UIKit
 
 class ProductController: UIViewController {
-
+    
     @IBOutlet private weak var productTableView: UITableView!
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //MARK: - Properties
     
-    private var modals = [MyList]()
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var modals  = [MyList]()
+    private var coordinator: TitleCoordinator?
+
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getAllItems()
-
+        configureItem()
+        configureCoordinator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getAllItems()
-
+        
+    }
+    
+    //MARK: - Functions
+    
+    private func configureItem() {
+        navigationItem.title = "Product List"
+        
+    }
+    
+    private func configureCoordinator() {
+        coordinator = TitleCoordinator(navigationController: navigationController ?? UINavigationController())
     }
     
     private func  getAllItems() {
@@ -59,19 +76,17 @@ class ProductController: UIViewController {
         }
     }
     
-  
-
+    //MARK: - Button
+    
     @IBAction func addClicked(_ sender: Any) {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AddController") as! AddController
-        navigationController?.show(controller, sender: nil)
+        coordinator?.addClickedController()
     }
-    
+}
 
     
+    //MARK: - ProductController Extension
     
-    
-    
-}
+
 
 extension ProductController: UITableViewDataSource, UITableViewDelegate {
     
@@ -85,9 +100,19 @@ extension ProductController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "Delete") { _, _, _ in
+            self.deleteItem(item: self.modals[indexPath.row])
+            self.productTableView.reloadData()
+        }
+        
+        delete.backgroundColor = .red
+            return UISwipeActionsConfiguration(actions: [delete])
+    }
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         coordinator?.nextPageClicked()
+    }
 }
 
 
