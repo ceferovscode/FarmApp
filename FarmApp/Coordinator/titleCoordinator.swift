@@ -21,8 +21,9 @@ class TitleCoordinator {
         navigationController.show(controller, sender: nil)
     }
     
-    func nextPageClicked () {
+    func nextPageClicked (data: [MyList]) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DetailsController") as! DetailsController
+        controller.item = data
         navigationController.show(controller, sender: nil)
     }
 }

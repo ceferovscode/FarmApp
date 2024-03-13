@@ -7,16 +7,25 @@
 
 import UIKit
 
+struct Item {
+    let name: String?
+    let titleDescription: String?
+    let image: UIImage?
+}
+
+
 class ProductController: UIViewController {
     
     @IBOutlet private weak var productTableView: UITableView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
     
     //MARK: - Properties
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var modals  = [MyList]()
     private var coordinator: TitleCoordinator?
-
+    private var item = [Item]()
     
     //MARK: - LifeCycle
     
@@ -111,10 +120,9 @@ extension ProductController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         coordinator?.nextPageClicked()
-    }
+           coordinator?.nextPageClicked(data: [modals[indexPath.row]])
+       }
 }
-
 
 
 

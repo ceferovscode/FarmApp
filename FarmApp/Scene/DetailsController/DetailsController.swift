@@ -9,24 +9,30 @@ import UIKit
 
 class DetailsController: UIViewController {
 
-    @IBOutlet private var detailsProductCollection: UICollectionView!
+    @IBOutlet private weak var productImage     : UIImageView!
+    @IBOutlet private weak var nameLabel        : UILabel!
+    @IBOutlet private weak var descriptionLabel : UITextView!
     
-    
-    private var cellId = "\(CollectionViewCell.self)"
+    var item: [MyList] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
-        configureCell()
+        configureData()
         
      }
     
-    private func configureCell() {
-        detailsProductCollection.register(UINib(nibName: cellId, bundle: nil), forCellWithReuseIdentifier: cellId)
-        
-    }
+    private func configureData() {
+        self.nameLabel.text = item.first?.productName
+        self.descriptionLabel.text = item.first?.shortdescription
+        self.productImage.image = UIImage(data: item.first?.productImage ?? Data())
+        // item.first?.productImage
+     }
     
+
+
     private func configure() {
         navigationItem.hidesBackButton = true
     }
@@ -35,20 +41,11 @@ class DetailsController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func mailClicked(_ sender: Any) {
+        
+        
+    }
     
 }
 
-extension DetailsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CollectionViewCell
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return  CGSize(width: detailsProductCollection.frame.width, height: detailsProductCollection.frame.height)
-    }
-}
+

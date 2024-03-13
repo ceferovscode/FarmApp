@@ -15,10 +15,14 @@ class AddController: UIViewController {
     @IBOutlet private weak var descriptionText  : UITextField!
     @IBOutlet private weak var addPhoto         : UIButton!
     
+
+    
+    
+    
     //MARK: - Properties
 
     private let imagePicker     = UIImagePickerController()
-    private var productImages :   UIImage?
+    private var productImage :   UIImage?
     private let context          = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var coordinator: TitleCoordinator?
 
@@ -41,9 +45,28 @@ class AddController: UIViewController {
         self.present(alert, animated: true, completion: nil )
     }
     
-    private func saveItem(productName: String) {
-        let model = MyList(context: self.context)
+    private func saveItem(productName: String, shortdescription: String, productImage: UIImage ) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+           let entity = NSEntityDescription.entity(forEntityName: "MyList", in: managedContext)!
+           let imageObject = NSManagedObject(entity: entity, insertInto: managedContext)
+        var model = MyList(context: self.context)
+
+
+        if let imageData = productImage.jpegData(compressionQuality: 1.0) {
+            imageObject.setValue(imageData, forKey: "productImage")
+            model.productImage = imageData
+        }
+        
+        
+        
         model.productName = productName
+        model.shortdescription = shortdescription
+        
         
         do {
             try self.context.save()
@@ -53,13 +76,15 @@ class AddController: UIViewController {
     }
     
     private func configureImagePicker() {
-        addPhoto.layer.cornerRadius         = 64
-        addPhoto.layer.masksToBounds        = true
-        addPhoto.imageView?.clipsToBounds   = true
-        addPhoto.layer.borderColor          = UIColor.white.cgColor
-        addPhoto.layer.borderWidth          = 3
-        addPhoto.imageView?.contentMode     = .scaleAspectFit
-    }
+           addPhoto.layer.cornerRadius         = 64
+           addPhoto.layer.masksToBounds        = true
+           addPhoto.imageView?.clipsToBounds   = true
+           addPhoto.layer.borderColor          = UIColor.white.cgColor
+           addPhoto.layer.borderWidth          = 3
+           addPhoto.imageView?.contentMode     = .scaleAspectFit
+       }
+    
+   
     
     private func configureDelegate() {
         imagePicker.delegate                = self
@@ -83,7 +108,7 @@ class AddController: UIViewController {
             return
         }
         
-        self.saveItem(productName: self.productText.text ?? "title")
+        self.saveItem(productName:  self.productText.text ?? "title", shortdescription:  self.descriptionText.text ?? "title", productImage:  productImage ?? UIImage())
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -106,7 +131,7 @@ extension AddController: UIImagePickerControllerDelegate, UINavigationController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let productImage = info[.editedImage] as? UIImage else { return }
-        self.productImages = productImage
+        self.productImage = productImage
         configureImagePicker()
         self.addPhoto.setImage(productImage.withRenderingMode(.alwaysOriginal), for: .normal)
         dismiss(animated: true, completion: nil)
