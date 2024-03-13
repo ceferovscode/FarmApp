@@ -13,7 +13,8 @@ class DetailsController: UIViewController {
     @IBOutlet private weak var nameLabel        : UILabel!
     @IBOutlet private weak var descriptionLabel : UITextView!
     
-    var item: [MyList] = []
+     var item: [MyList] = []
+    private var coordinator: TitleCoordinator?
 
     
     override func viewDidLoad() {
@@ -21,15 +22,19 @@ class DetailsController: UIViewController {
         
         configure()
         configureData()
+        configureCoordinator()
         
      }
+    
+    private func configureCoordinator() {
+        coordinator = TitleCoordinator(navigationController: navigationController ?? UINavigationController())
+    }
     
     private func configureData() {
         self.nameLabel.text = item.first?.productName
         self.descriptionLabel.text = item.first?.shortdescription
         self.productImage.image = UIImage(data: item.first?.productImage ?? Data())
-        // item.first?.productImage
-     }
+      }
     
 
 
@@ -42,9 +47,7 @@ class DetailsController: UIViewController {
     }
     
     @IBAction func mailClicked(_ sender: Any) {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MailController") as! MailController
-        controller.item  = self.item
-        navigationController?.show(controller, sender: nil)
+        coordinator?.nextMailClicked(data: item)
         
     }
     

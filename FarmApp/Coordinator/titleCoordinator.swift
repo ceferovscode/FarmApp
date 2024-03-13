@@ -26,4 +26,10 @@ class TitleCoordinator {
         controller.item = data
         navigationController.show(controller, sender: nil)
     }
+    
+    func nextMailClicked (data: [MyList]) {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MailController") as! MailController
+        controller.items  = data
+        navigationController.show(controller, sender: nil)
+    }
 }

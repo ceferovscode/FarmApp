@@ -11,21 +11,23 @@ import MessageUI
 class MailController: UIViewController {
 
     
-    @IBOutlet weak var subjectLabel: UITextField!
+    @IBOutlet weak private var subjectLabel     : UITextField!
+    @IBOutlet weak private var mailLabel        : UITextField!
+    @IBOutlet weak private var titleImage       : UIImageView!
     
-    @IBOutlet weak var mailLabel: UITextField!
-    
-    @IBOutlet weak var titleImage: UIImageView!
-    
-    var item: [MyList] = []
+    var items: [MyList] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subjectLabel.text = item.first?.shortdescription
-        titleImage.image = UIImage(data: item.first?.productImage ?? Data())
+       
+        configureData()
 
-
+    }
+    
+    private func configureData() {
+        subjectLabel.text = items.first?.shortdescription
+        titleImage.image = UIImage(data: items.first?.productImage ?? Data())
     }
     
 

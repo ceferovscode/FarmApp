@@ -60,6 +60,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		0728D06E2BA246B3005242E4 /* MailController */ = {
+			isa = PBXGroup;
+			children = (
+				0728D06C2BA22674005242E4 /* MailController.swift */,
+			);
+			path = MailController;
+			sourceTree = "<group>";
+		};
 		07BE3F972B99F5FA002B4E99 = {
 			isa = PBXGroup;
 			children = (
@@ -103,9 +111,10 @@
 		07BE3FB82B9A7155002B4E99 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				07BE3FB92B9A7167002B4E99 /* AddController */,
 				07FF40612B9DD1A300929676 /* ProductController */,
+				07BE3FB92B9A7167002B4E99 /* AddController */,
 				07FF40622B9DD1B100929676 /* DetailsController */,
+				0728D06E2BA246B3005242E4 /* MailController */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -122,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				07BE3FBA2B9A7177002B4E99 /* ProductController.swift */,
-				0728D06C2BA22674005242E4 /* MailController.swift */,
 				07240A2D2B9B200600020129 /* PhotoCell.swift */,
 			);
 			path = ProductController;
