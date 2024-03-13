@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0709C43A2B9CCD7900266E01 /* MyList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0709C4382B9CCD7900266E01 /* MyList.xcdatamodeld */; };
 		07240A2E2B9B200600020129 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07240A2D2B9B200600020129 /* PhotoCell.swift */; };
-		0757F72E2BA221B600C09CC4 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757F72D2BA221B600C09CC4 /* MailViewController.swift */; };
+		0728D06D2BA22674005242E4 /* MailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0728D06C2BA22674005242E4 /* MailController.swift */; };
 		07BE3FA42B99F5FA002B4E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3FA32B99F5FA002B4E99 /* AppDelegate.swift */; };
 		07BE3FA62B99F5FA002B4E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3FA52B99F5FA002B4E99 /* SceneDelegate.swift */; };
 		07BE3FAB2B99F5FA002B4E99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BE3FA92B99F5FA002B4E99 /* Main.storyboard */; };
@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		0709C4392B9CCD7900266E01 /* MyList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyList.xcdatamodel; sourceTree = "<group>"; };
 		07240A2D2B9B200600020129 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		0757F72D2BA221B600C09CC4 /* MailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailViewController.swift; path = ../../../../../../Downloads/mail_app/mail_app/MailViewController.swift; sourceTree = "<group>"; };
+		0728D06C2BA22674005242E4 /* MailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailController.swift; sourceTree = "<group>"; };
 		07BE3FA02B99F5FA002B4E99 /* FarmApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BE3FA32B99F5FA002B4E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BE3FA52B99F5FA002B4E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,8 +121,8 @@
 		07FF40612B9DD1A300929676 /* ProductController */ = {
 			isa = PBXGroup;
 			children = (
-				0757F72D2BA221B600C09CC4 /* MailViewController.swift */,
 				07BE3FBA2B9A7177002B4E99 /* ProductController.swift */,
+				0728D06C2BA22674005242E4 /* MailController.swift */,
 				07240A2D2B9B200600020129 /* PhotoCell.swift */,
 			);
 			path = ProductController;
@@ -207,9 +207,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0757F72E2BA221B600C09CC4 /* MailViewController.swift in Sources */,
 				07FF40642B9DD1D100929676 /* DetailsController.swift in Sources */,
 				07BE3FBB2B9A7177002B4E99 /* ProductController.swift in Sources */,
+				0728D06D2BA22674005242E4 /* MailController.swift in Sources */,
 				0709C43A2B9CCD7900266E01 /* MyList.xcdatamodeld in Sources */,
 				07BE3FA42B99F5FA002B4E99 /* AppDelegate.swift in Sources */,
 				07BE3FA62B99F5FA002B4E99 /* SceneDelegate.swift in Sources */,

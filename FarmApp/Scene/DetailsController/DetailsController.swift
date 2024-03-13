@@ -42,7 +42,9 @@ class DetailsController: UIViewController {
     }
     
     @IBAction func mailClicked(_ sender: Any) {
-        
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MailController") as! MailController
+        controller.item  = self.item
+        navigationController?.show(controller, sender: nil)
         
     }
     
